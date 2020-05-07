@@ -12,6 +12,17 @@ access_token = environ['access_token']
 access_token_secret = environ['access_token_secret']
 
 
+def follow_back():
+    followers = [api.followers()]
+    following = [api.friends()]
+    for follower in followers:
+        if follower in following:
+            print('did nothing for one person')
+        else:
+            api.friendship.create(follower)
+            print('followed : ' + follower)
+
+
 def create_random_story():
     bodyPart = random.choice(
         ["head", "stomach", "ear", "face", "eye", "nose", "heart", "cheek", "arm", "mouth", "tooth", "leg", "foot",
@@ -55,10 +66,11 @@ try:
 except:
     print("Error during authentication")
 
-interval = 60*60*6
+interval = 60 * 60 * 6
 # $ run the schedule
 while True:
     print("Making story...")
     story = create_random_story()
     api.update_status(story)
+    follow_back()
     time.sleep(interval)
