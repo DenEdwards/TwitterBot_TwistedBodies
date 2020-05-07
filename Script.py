@@ -48,7 +48,7 @@ try:
 except:
     print("Error during authentication")
 
-schedule.every().day.at("5:30").do(job)
+schedule.every().minute.do(job)
 
 # $ run the schedule
 while 1:
