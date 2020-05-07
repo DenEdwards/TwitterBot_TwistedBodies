@@ -2,9 +2,14 @@ import tweepy
 import random
 import schedule
 import time
-from credentials import consumer_secret, consumer_key, access_token, access_token_secret
 import sys
+import os
 from os import environ
+
+consumer_key = environ['consumer_key']
+consumer_secret = environ['consumer_secret']
+access_token = environ['access_token']
+access_token_secret = environ['access_token_secret']
 
 def create_random_story():
     bodyPart = random.choice(["head", "stomach", "ear", "face", "eye", "nose", "heart", "cheek", "arm", "mouth", "tooth", "leg", "foot", "toe"])
@@ -24,14 +29,12 @@ def create_random_story():
     print(story)
     return story
 
+
 def job():
     api.update_status(create_random_story())
 
 
-consumer_key = environ['consumer_key']
-consumer_secret = environ['consumer_secret']
-access_token = environ['access_token']
-access_token_secret = environ['access_token_secret']
+
 
 # Authenticate to Twitter
 # telling Tweepy to use the credentials that created
