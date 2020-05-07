@@ -35,13 +35,9 @@ def create_random_story():
     intro3 = "You didn't expect your " + person + " to point out your " + des + " " + bodyPart + "."
 
     intros = [intro1, intro2, intro3]
-    story = random.choice(intros)
-    print(story)
-    return story
-
-
-def job():
-    api.update_status(create_random_story())
+    story1 = random.choice(intros)
+    print(story1)
+    return story1
 
 
 # Authenticate to Twitter
@@ -59,9 +55,10 @@ try:
 except:
     print("Error during authentication")
 
-schedule.every().minute.do(job)
-
+interval = 60
 # $ run the schedule
-while 1:
-    schedule.run_pending()
-    time.sleep(15)
+while True:
+    print("Making story...")
+    story = create_random_story()
+    api.update_status(story)
+    time.sleep(interval)
