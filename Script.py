@@ -19,7 +19,7 @@ def follow_back():
         if follower in following:
             print('did nothing for one person')
         else:
-            api.friendship.create(follower)
+            api.create_friendship(follower)
             print('followed : ' + follower)
 
 
