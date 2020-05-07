@@ -13,14 +13,14 @@ access_token_secret = environ['access_token_secret']
 
 
 def follow_back():
-    followers = [api.followers()]
-    following = [api.friends()]
+    followers = tweepy.Cursor(api.followers).items()
+    following = tweepy.Cursor(api.friends).items()
     for follower in followers:
         if follower in following:
             print('did nothing for one person')
         else:
-            api.create_friendship(screen_name=follower.screen_name)
-            print('followed : ' + follower)
+            follower.follow()
+            print('followed : ' + follower.screen_name)
 
 
 def create_random_story():
