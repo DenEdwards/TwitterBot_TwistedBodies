@@ -55,7 +55,7 @@ try:
 except:
     print("Error during authentication")
 
-interval = 60
+interval = 60*60*6
 # $ run the schedule
 while True:
     print("Making story...")
