@@ -1,9 +1,6 @@
 import tweepy
 import random
-import schedule
 import time
-import sys
-import os
 from os import environ
 
 consumer_key = environ['consumer_key']
@@ -27,25 +24,59 @@ def create_random_story():
     bodyPart = random.choice(
         ["head", "stomach", "ear", "face", "eye", "nose", "heart", "cheek", "arm", "mouth", "tooth", "leg", "foot",
          "toe"])
+
     adj = random.choice(["blackens and curls", "crumbles", "grows huge", "crawls", "is eaten", "melts", "falls off",
                          "turns into nothing", "shines in the dark", "disappears", "turns black"])
+
     person = random.choice(
         ["father", "mother", "sister", "brother", "teacher", "co-worker", "manager", "son", "daughter"])
+
     action = random.choice(["die", "fly away", "leave", "smile", "frown", "laugh", "melt", "disappear", "chuckle"])
-    place = random.choice(
+
+    context = random.choice(
         ["with a rose", "with a sunflower", "with an old friend", "with an old enemy", "with your journal",
          "with your diary", "with oil paints", "with a mango", "with yourself", "with another", "in the searing desert",
          "in your home", "in the mall", "in the park", "outside", "inside", "in your parent's bedroom",
          "in the southeast corner of your old school"])
+
     des = random.choice(["favorite", "neglected", "beloved", "huge", "small"])
+
     final = random.choice(
         ["forever", "without a word", "silently", "quickly", "spontaneously", "over and over again", "badly"])
 
-    intro1 = "Your " + bodyPart + " " + adj + ", as you watch your " + person + " " + action + " " + final + "."
-    intro2 = "Alone " + place + ", your " + des + " " + bodyPart + " " + adj + "."
-    intro3 = "You didn't expect your " + person + " to point out your " + des + " " + bodyPart + "."
+    noun = random.choice(["He", "She", "It"])
 
-    intros = [intro1, intro2, intro3]
+    descriptionFinal = random.choice(["lovingly", "menacingly", "carefully", "quietly"])
+
+    verb = random.choice(["thinks", "decides", "watches", "stares", "gazes", "smiles", "frowns", "laughs"])
+
+    actionPlural = random.choice(["strokes", "grabs", "crushes", "holds", "caresses"])
+
+    verb2 = random.choice(["thinks", "decides", "watches", "stares", "gazes", "smiles", "frowns", "laughs"])
+
+    pensive = random.choice(["wondering why", "questioning why", "pondering why"])
+
+    sudden = random.choice(["suddenly", "quietly", "amazingly", "quickly"])
+
+    explodes = random.choice(["exploded into", "unfurled into", "became", "changed into"])
+
+    number = random.choice(["two", "seventeen", "sixty-four", "two million", "seventy-five billion"])
+
+    things = random.choice(["butterflies", "colors", "intricate hand carved wooden horses", "carrots", "diamonds"])
+
+    nounKnown = random.choice(
+        ["The old man", "The old woman", "The demon", "The angel", "The magician", "The ghostly figure"])
+
+    nounKnown2 = random.choice(
+        ["the old man's", "the old woman's", "the demon's", "the angel's", "the magician's", "the ghostly figure's"])
+
+    intro1 = "Your " + bodyPart + " " + adj + ", as you watch your " + person + " " + action + " " + final + "."
+    intro2 = "Alone " + context + ", your " + des + " " + bodyPart + " " + adj + "."
+    intro3 = "You didn't expect your " + person + " to point out your " + des + " " + bodyPart + "."
+    intro4 = noun + " " + verb + ", as " + noun.lower() + " " + actionPlural + " your " + bodyPart + " " + descriptionFinal + "."
+    intro5 = nounKnown + " " + verb + " and " + verb2 + ", " + pensive + " " + nounKnown2 + " " + bodyPart + " " + sudden + " " + explodes + " " + number + " " + things + "."
+
+    intros = [intro1, intro2, intro3, intro4, intro5]
     story1 = random.choice(intros)
     print(story1)
     return story1
@@ -66,7 +97,7 @@ try:
 except:
     print("Error during authentication")
 
-interval = 60*60*5
+interval = 60 * 60 * 5
 # $ run the schedule
 while True:
     print("Making story...")
